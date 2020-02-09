@@ -1,32 +1,36 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    ft_strcmp.s                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: stbaleba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/02/08 10:07:36 by stbaleba          #+#    #+#              #
-#    Updated: 2020/02/09 15:28:27 by stbaleba         ###   ########.fr        #
+#    Created: 2020/02/09 14:19:18 by stbaleba          #+#    #+#              #
+#    Updated: 2020/02/09 16:18:10 by stbaleba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC=nasm
-CFLAG=-fmacho64
-NAME=libasm.a
-FILE=srcs/ft_strlen.s \
-	srcs/ft_strcpy.s \
-	srcs/ft_strcmp.s
+		section		.text
+			global		_ft_strcmp
 
-OBJ=$(FILE:.s=.o)
-
-all :$(NAME)
-
-$(NAME): $(OBJ)
-		ar rc $(NAME) $(OBJ)
-.s.o: $(FILE)
-	$(CC) $(CFLAG) $<
-clean:
-		rm -rf  ./srcs/*.o
-fclean: clean
-		rm -rf $(NAME)
-re: fclean all
+_ft_strcmp:
+			xor	rcx, rcx
+			xor rdx, rdx
+			dec rcx
+			dec rdx
+			while:
+						inc rcx
+						inc rdx
+						cmp BYTE[rdi + rdx], 0
+						je _finish
+						cmp BYTE[rsi + rcx], 0
+						je _finish
+						mov bl, BYTE[rsi + rcx]
+						cmp bl, BYTE[rdi + rdx]
+						je while
+						jmp _finish
+						ret
+_finish:
+	mov al, BYTE[rdi + rdx]
+	sub al, BYTE[rsi + rcx]
+	ret
