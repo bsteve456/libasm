@@ -1,34 +1,19 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    ft_write.s                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: stbaleba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/02/08 10:07:36 by stbaleba          #+#    #+#              #
-#    Updated: 2020/02/10 10:31:25 by stbaleba         ###   ########.fr        #
+#    Created: 2020/02/10 09:45:03 by stbaleba          #+#    #+#              #
+#    Updated: 2020/02/10 10:49:20 by stbaleba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC=nasm
-CFLAG=-fmacho64
-NAME=libasm.a
-FILE=srcs/ft_strlen.s \
-	srcs/ft_strcpy.s \
-	srcs/ft_strcmp.s \
-	srcs/ft_write.s \
-	srcs/ft_read.s
+		section		.text
+			global		_ft_write
 
-OBJ=$(FILE:.s=.o)
-
-all :$(NAME)
-
-$(NAME): $(OBJ)
-		ar rc $(NAME) $(OBJ)
-.s.o: $(FILE)
-	$(CC) $(CFLAG) $<
-clean:
-		rm -rf  ./srcs/*.o
-fclean: clean
-		rm -rf $(NAME)
-re: fclean all
+_ft_write:
+	mov rax, 0x02000004
+	syscall
+	ret

@@ -6,7 +6,7 @@
 #    By: stbaleba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/09 14:19:18 by stbaleba          #+#    #+#              #
-#    Updated: 2020/02/09 16:18:10 by stbaleba         ###   ########.fr        #
+#    Updated: 2020/02/10 09:35:02 by stbaleba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,4 +33,5 @@ _ft_strcmp:
 _finish:
 	mov al, BYTE[rdi + rdx]
 	sub al, BYTE[rsi + rcx]
+	movsx rax, al
 	ret
