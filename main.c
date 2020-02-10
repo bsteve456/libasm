@@ -6,7 +6,7 @@
 /*   By: stbaleba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 10:23:23 by stbaleba          #+#    #+#             */
-/*   Updated: 2020/02/10 10:50:12 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/02/10 12:40:06 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*ft_strcpy(char *dst, const char *src);
 int		ft_strcmp(const char *s1, const char *s2);
 ssize_t	ft_write(int fildes, const void *buf, size_t nbyte);
 ssize_t ft_read(int fildes, void *buf, size_t nbyte);
+char	*ft_strdup(const char *s1);
+
 
 int main()
 {
@@ -44,9 +46,12 @@ int main()
 	char *buf;
 	buf = calloc(sizeof(char), 15);
 	ft_read(fd, buf, 10);
-	printf("%s\n", buf);
+//	printf("%s\n", buf);
 	free(buf);
 	close(fd);
+	printf("ft_strdup :%s\n", ft_strdup(s1));
+	printf("strdup :%s\n", strdup(s1));
+
 //	printf("%s\n", strcpy(s, s1));
 
 //	assert(i == 1 && "not good");

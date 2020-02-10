@@ -1,35 +1,40 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    ft_strdup.s                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: stbaleba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/02/08 10:07:36 by stbaleba          #+#    #+#              #
-#    Updated: 2020/02/10 12:21:57 by stbaleba         ###   ########.fr        #
+#    Created: 2020/02/10 12:11:39 by stbaleba          #+#    #+#              #
+#    Updated: 2020/02/10 14:06:02 by stbaleba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC=nasm
-CFLAG=-fmacho64
-NAME=libasm.a
-FILE=srcs/ft_strlen.s \
-	srcs/ft_strcpy.s \
-	srcs/ft_strcmp.s \
-	srcs/ft_write.s \
-	srcs/ft_read.s \
-	srcs/ft_strdup.s
+		extern		_malloc
+		extern		_ft_strlen
+		section		.text
+			global		_ft_strdup
 
-OBJ=$(FILE:.s=.o)
+_ft_strdup:
+	call _ft_strlen
+	push rdi
+	mov rdi, rax
+	call _malloc
+	xor rcx, rcx
+	xor rdx, rdx
+	dec rcx
+	dec rdx
+	pop rdi
+	jmp loop
+loop:
+	inc rdx
+	inc rcx
+	mov bl, BYTE[rdi + rdx]
+	mov BYTE[rax + rcx], bl
+	cmp	BYTE[rdi + rdx], 0x0
+	jne loop
+	mov BYTE[rax + rdx], 0
+	ret
 
-all :$(NAME)
 
-$(NAME): $(OBJ)
-		ar rc $(NAME) $(OBJ)
-.s.o: $(FILE)
-	$(CC) $(CFLAG) $<
-clean:
-		rm -rf  ./srcs/*.o
-fclean: clean
-		rm -rf $(NAME)
-re: fclean all
+
