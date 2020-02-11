@@ -6,14 +6,14 @@
 #    By: stbaleba <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/08 10:32:13 by stbaleba          #+#    #+#              #
-#    Updated: 2020/02/08 17:18:12 by stbaleba         ###   ########.fr        #
+#    Updated: 2020/02/09 10:49:57 by blacking         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 		section		.text
-			global		_ft_strlen
+			global		ft_strlen
 
-_ft_strlen:
+ft_strlen:
 		xor rax, rax
 		dec rax
 		while:
