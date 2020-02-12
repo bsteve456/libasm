@@ -42,6 +42,7 @@ int main(int ac, char **av)
 		fd = open(av[2], O_RDWR);
 	else
 		fd = -1;
+	printf(" fd : %d\n", fd);
 	res = ft_read(fd, buffer, 50);
 	if (res > 0)
 		buffer[res] = '\0';

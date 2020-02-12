@@ -6,7 +6,7 @@
 /*   By: stbaleba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 10:23:23 by stbaleba          #+#    #+#             */
-/*   Updated: 2020/02/11 14:11:03 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/02/12 09:46:11 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int main()
 	fd = open("./test", O_RDWR);
 	char *buf;
 	buf = calloc(sizeof(char), 15);
-	ft_read(fd, buf, 10);
+	ft_read(200, buf, 10);
 	printf("%s\n", buf);
 	free(buf);
 	close(fd);
